@@ -1,10 +1,10 @@
 /*
- * This file is part of pocketfft.
+ * This file is part of pocketffts.
  * Licensed under a 3-clause BSD style license - see LICENSE.md
  */
 
-/*! \file pocketfft.h
- *  Public interface of the pocketfft library
+/*! \file pocketffts.h
+ *  Public interface of the pocketffts library
  *
  *  Copyright (C) 2008-2018 Max-Planck-Society
  *  \author Martin Reinecke
@@ -12,6 +12,10 @@
 
 #ifndef POCKETFFT_SINGLE_H
 #define POCKETFFT_SINGLE_H
+#ifdef __cplusplus
+
+extern "C" {
+#endif
 
 #include <stdlib.h>
 
@@ -30,5 +34,8 @@ void destroy_rffts_plan (rffts_plan plan);
 int rffts_backward(rffts_plan plan, float c[], float fct);
 int rffts_forward(rffts_plan plan, float c[], float fct);
 size_t rffts_length(rffts_plan plan);
-
+#ifdef __cplusplus
+}
 #endif
+#endif
+
