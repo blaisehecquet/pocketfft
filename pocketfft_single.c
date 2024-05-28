@@ -1,28 +1,41 @@
 /*
- * This file is part of pocketfft.
+ * This file is part of pocketffts.
  * Licensed under a 3-clause BSD style license - see LICENSE.md
  */
 
-#include "pocketfft_single.h"
+/*! \file pocketffts.h
+ *  Public interface of the pocketffts library
+ *
+ *  Copyright (C) 2008-2018 Max-Planck-Society
+ *  \author Martin Reinecke
+ */
 
-#define floatT  float
-#define fmaT    fmaf
+#ifndef POCKETFFT_SINGLE_H
+#define POCKETFFT_SINGLE_H
+#ifdef __cplusplus
 
-#define cfft_plan_i        cffts_plan_i
-#define cfft_plan          cffts_plan
-#define make_cfft_plan     make_cffts_plan
-#define destroy_cfft_plan  destroy_cffts_plan
-#define cfft_backward      cffts_backward
-#define cfft_forward       cffts_forward
-#define cfft_length        cffts_length
+extern "C" {
+#endif
 
-#define rfft_plan_i        rffts_plan_i
-#define rfft_plan          rffts_plan
-#define make_rfft_plan     make_rffts_plan
-#define destroy_rfft_plan  destroy_rffts_plan
-#define rfft_backward      rffts_backward
-#define rfft_forward       rffts_forward
-#define rfft_length        rffts_length
+#include <stdlib.h>
 
-#include "pocketfft.c"
+struct cffts_plan_i;
+typedef struct cffts_plan_i * cffts_plan;
+cffts_plan make_cffts_plan (size_t length);
+void destroy_cffts_plan (cffts_plan plan);
+int cffts_backward(cffts_plan plan, float c[], float fct);
+int cffts_forward(cffts_plan plan, float c[], float fct);
+size_t cffts_length(cffts_plan plan);
+
+struct rffts_plan_i;
+typedef struct rffts_plan_i * rffts_plan;
+rffts_plan make_rffts_plan (size_t length);
+void destroy_rffts_plan (rffts_plan plan);
+int rffts_backward(rffts_plan plan, float c[], float fct);
+int rffts_forward(rffts_plan plan, float c[], float fct);
+size_t rffts_length(rffts_plan plan);
+#ifdef __cplusplus
+}
+#endif
+#endif
 
