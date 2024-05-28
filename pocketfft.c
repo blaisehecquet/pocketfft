@@ -23,7 +23,7 @@
 
 #include <math.h>
 #include <string.h>
-
+#include "pocketfft.h"
 #define RALLOC(type,num) \
   ((type *)malloc((num)*sizeof(type)))
 #define DEALLOC(ptr) \
@@ -39,6 +39,8 @@
 #define NOINLINE
 #define WARN_UNUSED_RESULT
 #endif
+#define floatT  double
+#define fmaT    fma
 
 // adapted from https://stackoverflow.com/questions/42792939/
 // CAUTION: this function only works for arguments in the range [-0.25; 0.25]!
@@ -2127,6 +2129,8 @@ WARN_UNUSED_RESULT int cfft_forward(cfft_plan plan, floatT c[], floatT fct)
   return cfftblue_forward(plan->blueplan,c,fct);
   }
 
+
+
 typedef struct rfft_plan_i
   {
   rfftp_plan packplan;
@@ -2198,3 +2202,14 @@ WARN_UNUSED_RESULT int rfft_forward(rfft_plan plan, floatT c[], floatT fct)
   else // if (plan->blueplan)
     return rfftblue_forward(plan->blueplan,c,fct);
   }
+
+
+
+
+
+
+
+
+
+
+
