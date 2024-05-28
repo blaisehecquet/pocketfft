@@ -23,6 +23,7 @@
 
 #include <math.h>
 #include <string.h>
+#include "pocketfft.h"
 
 #define RALLOC(type,num) \
   ((type *)malloc((num)*sizeof(type)))
@@ -39,7 +40,8 @@
 #define NOINLINE
 #define WARN_UNUSED_RESULT
 #endif
-
+#define floatT  double
+#define fmaT    fma
 // adapted from https://stackoverflow.com/questions/42792939/
 // CAUTION: this function only works for arguments in the range [-0.25; 0.25]!
 static void my_sincosm1pi (floatT a, floatT *restrict res)
